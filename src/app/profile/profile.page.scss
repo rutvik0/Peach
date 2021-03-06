@@ -1,0 +1,58 @@
+// page-profile {
+//     /* Profile avatar */
+//     .avatar {
+//       border-radius: 100%;
+//       position: absolute;
+//     }
+  
+//     /* Small for notifications */
+//     .badge-container {
+//       position: relative;
+//     }
+  
+//     .info {
+//       padding-top: 4px;
+//     }
+
+//     .edit-button:active {
+//       border-color: #dce2ed;
+//     }
+//   }
+
+.indent {
+    padding-left: 180px;
+}
+.avatar {
+    width: 100% !important;
+    height : 100% !important;
+    max-width: 600px !important;  //any size
+    max-height: 600px !important; //any size
+
+    border-radius: 30px;
+}
+ion-card-header {
+    padding: 0;
+}
+
+ion-card-content{
+    color: black;
+}
+.black {
+    color: black;
+  }
+  .color {
+      color: grey;
+  }
+    .size {
+      width:100% !important;
+      height : 100% !important;
+      max-width: 30px !important;  //any size
+      max-height: 30px !important; //any size
+    }
+  
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+    }

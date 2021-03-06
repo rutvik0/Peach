@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-avatar class="ion-padding">
+    <img [src]="currUser.image"/>
+  </ion-avatar>
+  <ion-item lines="none" class="ion-text-center" (click)="editPhoto()">
+    <ion-label>
+      <h6 class="blue"><u>Update Profile Picture</u></h6>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label color="primary" position="floating">Full Name</ion-label>
+    <ion-textarea rows=1 type="text" [(ngModel)]="currUser.fullname" required></ion-textarea>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label color="primary" position="floating">Username</ion-label>
+    <ion-textarea cols=1 rows=1 type="text" [(ngModel)]="currUser.username" required></ion-textarea>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label color="primary" position="floating">Status</ion-label>
+    <ion-textarea type="text" [(ngModel)]="currUser.status" required></ion-textarea>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label color="primary">Private Profile</ion-label>
+    <ion-toggle [(ngModel)]="currUser.privateStat"></ion-toggle>
+  </ion-item>
+  <ion-button expand="block" class="ion-padding" (click)="apply()"
+  [disabled]="!(this.currUser.username !== this.original.username
+      || this.currUser.fullname !== this.original.fullname
+      || this.currUser.status !== this.original.status
+      || this.currUser.privateStat !== this.original.privateStat)">Apply Changes</ion-button>
+</ion-content>

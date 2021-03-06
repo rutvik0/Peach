@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <strong>Post a Picture</strong>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+    <ion-col>
+      <ion-button disabled={{cam}} expand="block" (click)="takePic(1)">Capture</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button disabled={{cam}} expand="block" (click)="takePic(0)">Gallery</ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <img [src]="img"/>
+  <div class="padding"> Remaining Characters: {{150 - caption.length}}</div>
+  <ion-item lines="none">
+    <ion-textarea maxLength=150 [(ngModel)]="caption" placeHolder="Add a Caption..."></ion-textarea>
+  </ion-item>
+  <h1></h1>
+  <ion-button disabled={{post}} (click)="makePost()" class="ion-padding" expand="block">Post</ion-button>
+</ion-content>

@@ -1,0 +1,75 @@
+ion-textarea{
+    margin-left: 10px;
+    border-radius: 10px !important;
+    background:  #ffe3ca;
+  }
+
+
+  ion-footer {
+    padding-bottom: 9px;
+    padding-left: 2px;
+  }
+  ion-content {
+    --ion-background-color: peachpuff;
+  }
+
+  ion-header {
+    --ion-background-color: peachpuff;
+  }
+
+  .footer {
+    background-color: peachpuff;
+    background: peachpuff;
+  }
+  
+
+  .message-wrap {
+    // padding: 0 10px;
+    
+    
+    .message {
+      position: relative;
+      padding: 7px 0;
+      border-radius: 40px !important;
+
+      .msg-detail {
+        width: 100%;
+        display: inline-block;
+        position: relative;
+        p {
+          margin: 0;
+          font-size: 14px;
+        }
+        .msg-content {
+          position: relative;
+          border-radius: 10px !important;
+          padding: 8px;
+          width: auto;
+          max-width: 80%;
+          min-width: 3%;
+        }
+      }
+    }
+    .message-left {
+      .msg-content {
+        float: left;
+        position: relative;
+        background: white;
+        color:black;
+      }
+    }
+    .message-right {
+      .msg-detail {
+        // padding-right: 60px;
+        .msg-info {
+          text-align: right;
+        }
+      }
+      .msg-content {
+        float: right;
+        color: #2a2828;
+        background: #eee2df;
+      }
+    }
+    
+  }

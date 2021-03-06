@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select user to chat</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!selected()" (click)="startChat()">Chat</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar style="--background:#ffe3ca" (ionInput)="filterList($event)"></ion-searchbar>
+  <ion-list lines="none">
+    <ion-item *ngFor="let user of users">
+      <ion-label class="ion-text-wrap">
+        <ion-avatar>
+          <img [src]="user.image"/>
+        </ion-avatar>
+      </ion-label>
+      <ion-label>
+        {{user.username}}
+      </ion-label>
+      <ion-checkbox [disabled]="userSelect(user)" slot="end" (ionChange)="select(user)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

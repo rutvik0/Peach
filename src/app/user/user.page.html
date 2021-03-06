@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{current_user.username}}'s Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none">
+  <ion-row class="ion-padding bottom">
+    <!-- Avatar -->
+    <ion-col>
+      <img [src]="current_user.image" class="avatar"/>
+    </ion-col>
+    <!-- Information about user -->
+    <ion-col class="ion-text-center">
+      <h6>{{current_user.posts}}</h6>
+      <p><strong>Posts</strong></p>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <h6>{{current_user.followers}}</h6>
+      <p><strong>Followers</strong></p>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <h6>{{current_user.following}}</h6>
+      <p><strong>Following</strong></p>
+    </ion-col>
+
+    <ion-col *ngIf="!following()">
+      <ion-button expand="block" (click)="follow()">‏‏‎ ‎‏‏‎ ‎follow‏‏‎ ‎‏‏‎ ‎</ion-button>
+    </ion-col>
+    <ion-col *ngIf="following()">
+      <ion-button fill="outline" expand="block" (click)="unfollow()">‏‏‎ ‎‏‏‎ ‎follow‏‏‎ing ‎‏‏‎ ‎</ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-item>
+  <!-- Profile info -->
+  <div class="padding">
+    <p><b>{{current_user.fullname}}</b></p>
+    <p>{{current_user.status}}</p>
+  </div>
+
+
+
+  <div *ngIf="!following()">
+    <div *ngIf="current_user.privateStat === 'true'" class="ion-padding">
+      <h4 class="ion-text-center">{{current_user.fullname}}'s Profile is private, follow to see posts</h4>
+    </div>
+
+    <div *ngIf="current_user.privateStat === 'false'">
+      <div>
+        <ion-segment [(ngModel)]="profile_segment">
+          <ion-segment-button value="grid">
+            <ion-icon name="apps"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="list">
+            <ion-icon name="browsers-sharp"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div [ngSwitch]="profile_segment">
+        <ion-list *ngSwitchCase="'grid'">
+          <ion-grid>
+            <ion-row>
+              <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let i of posts">
+                <img [src]="i.image">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'list'">
+          <ion-card *ngFor="let post of posts">
+            <ion-card-header>
+                <ion-item lines="none">
+                  <ion-avatar>
+                    <img [src]="post.userimg">
+                  </ion-avatar>
+                <h6 style="font-weight: bold">‏‏‎ ‎‏‏‎ ‎{{post.username}}</h6>
+                </ion-item>
+            </ion-card-header>
+        
+            <img [src]="post.image">
+        
+            <ion-buttons>
+              <ion-button *ngIf="!liked(post)" (click)="like(post)">
+                <ion-icon name="heart-outline"></ion-icon>
+              </ion-button>
+              <ion-button *ngIf="liked(post)" (click)="unlike(post)">
+                <ion-icon class="border" name="heart" color="danger"></ion-icon>
+              </ion-button>
+              <ion-button (click)="comment(post)">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+            <ion-card-content>
+              <p>{{post.likes?.length}} Likes</p>
+              <p *ngIf="ifCaption(post)"><b>{{post.username}}</b>‏‏‎ ‎{{post.caption}}</p>
+              
+              <ion-label class="color" *ngIf="commentSize(post)" (click)="comment(post)"> View all {{post.comments?.length}} comments...</ion-label>
+              <ion-list lines="none" *ngFor="let item of post.comments.slice(0,1)">
+                <p><b>‏‏‎{{item.username}}</b>‏‏‎ ‎{{item.comment}} </p>
+              </ion-list>
+            </ion-card-content>
+            <ion-label>‏‏‎ ‎{{post.posted | date: 'MM/dd/yyyy'}}</ion-label>
+          </ion-card>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="following()">
+    <div>
+      <ion-segment [(ngModel)]="profile_segment">
+        <ion-segment-button value="grid">
+          <ion-icon name="apps"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="list">
+          <ion-icon name="browsers-sharp"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="profile_segment">
+      <ion-list *ngSwitchCase="'grid'">
+        <ion-grid>
+          <ion-row>
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let i of posts">
+              <img [src]="i.image">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'list'">
+        <ion-card *ngFor="let post of posts">
+          <ion-card-header>
+              <ion-item lines="none">
+                <ion-avatar>
+                  <img [src]="post.userimg">
+                </ion-avatar>
+              <h6 style="font-weight: bold">‏‏‎ ‎‏‏‎ ‎{{post.username}}</h6>
+              </ion-item>
+          </ion-card-header>
+      
+          <img [src]="post.image">
+      
+          <ion-buttons>
+            <ion-button *ngIf="!liked(post)" (click)="like(post)">
+              <ion-icon name="heart-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="liked(post)" (click)="unlike(post)">
+              <ion-icon class="border" name="heart" color="danger"></ion-icon>
+            </ion-button>
+            <ion-button (click)="comment(post)">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      
+          <ion-card-content>
+            <p>{{post.likes?.length}} Likes</p>
+            <p *ngIf="ifCaption(post)"><b>{{post.username}}</b>‏‏‎ ‎{{post.caption}}</p>
+            
+            <ion-label class="color" *ngIf="commentSize(post)" (click)="comment(post)"> View all {{post.comments?.length}} comments...</ion-label>
+            <ion-list lines="none" *ngFor="let item of post.comments.slice(0,1)">
+              <p><b>‏‏‎{{item.username}}</b>‏‏‎ ‎{{item.comment}} </p>
+            </ion-list>
+          </ion-card-content>
+          <ion-label>‏‏‎ ‎{{post.posted | date: 'MM/dd/yyyy'}}</ion-label>
+        </ion-card>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>

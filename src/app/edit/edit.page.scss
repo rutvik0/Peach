@@ -1,0 +1,32 @@
+ion-avatar {
+    margin: auto;
+    display: block;
+    width:100% !important;
+    height : 100% !important;
+    max-width: 200px !important;  //any size
+    max-height: 200px !important; //any size
+}
+ion-header {
+    --ion-background-color: peachpuff;
+}
+
+ion-content {
+    --ion-background-color: peachpuff;
+}
+
+ion-textarea {
+    border-radius: 10px;
+    background: #ffe3ca;
+    padding-left: 10px;
+}
+
+ion-input {
+    border-radius: 10px;
+    background: #ffe3ca;
+    text-indent: 20px;
+}
+
+.blue {
+    color: blue;
+    border-bottom: blue;
+}

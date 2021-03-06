@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+  
+  <ion-img [src]="imgfile"></ion-img>
+  <form [formGroup]="new_item_form" (submit)="login(new_item_form.value)">
+    <ion-item lines="none">
+      <ion-input class="place" type="text" formControlName="email" placeHolder="Email" required></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="password" formControlName="password" placeHolder="Password" required></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-button color="light" class="submit-btn" type="submit" [disabled]="!new_item_form.valid">Login</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-buttons>
+          <ion-button (click)="signup()"> <h6 class="text">Click Here to Signup</h6> </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-content class="ion-padding">
+
+  <ion-img [src]="imgfile"></ion-img>
+  
+  <!-- <ion-item lines="none">
+    <ion-thumbnail slot="start"> 
+      <ion-img [src]="user.img"></ion-img> 
+    </ion-thumbnail>
+
+    <ion-button size="normal" color="primary" (click)="takePic()">Add Profile Picture</ion-button>
+
+  </ion-item> -->
+
+  <ion-item>
+    <ion-label color="primary" position="floating">Full Name</ion-label>
+    <ion-input type="text" [(ngModel)]="user.fullname" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" position="floating">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="user.name" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" position="floating">Email</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password" required></ion-input>
+  </ion-item>
+  <h6></h6>
+  <ion-button [disabled]="disabled()" class="submit-btn" expand="block" type="submit" (click)="signup()">Sign up</ion-button>
+  
+  </ion-content>

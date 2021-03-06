@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>followers</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-item class="ion-text-center">
+    <ion-label>
+        <h6 class="ion-text-center">Requests</h6>
+        <ion-list lines="none">
+        <ion-item *ngFor="let user of requests">
+          <ion-label>
+            <ion-avatar>
+              <img  [src]="user.image">
+            </ion-avatar>
+          </ion-label>
+    
+          <ion-label>
+            {{user.username}}
+          </ion-label>
+
+          <ion-buttons slot="end">
+            <ion-button (click)=reqAccept(user)><ion-icon name="checkmark-outline"></ion-icon></ion-button>
+            <ion-button (click)=reqReject(user)><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-label>
+  </ion-item>
+  </ion-card>
+
+
+  <ion-item *ngFor="let user of followers">
+    <ion-label class="ion-text-wrap">
+      <ion-avatar>
+        <img [src]="user.image"/>
+      </ion-avatar>
+    </ion-label>
+    <ion-label>
+      {{user.username}}
+    </ion-label>
+  </ion-item>
+</ion-content>

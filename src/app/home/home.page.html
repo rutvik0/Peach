@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="chatList()"><ion-icon name="chatbubbles-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let post of followingPosts">
+    <ion-card-header>
+        <ion-item lines="none">
+          <ion-avatar>
+            <img [src]="post.userimg">
+          </ion-avatar>
+        <h6 style="font-weight: bold">‏‏‎ ‎‏‏‎ ‎{{post.username}}</h6>
+        </ion-item>
+    </ion-card-header>
+
+    <img [src]="post.image">
+
+    <ion-buttons>
+      <ion-button *ngIf="!liked(post)" (click)="like(post)">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="liked(post)" (click)="unlike(post)">
+        <ion-icon class="border" name="heart" color="danger"></ion-icon>
+      </ion-button>
+      <ion-button (click)="comment(post)">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!saved(post)" (click)="bookmark(post)"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+      <ion-button *ngIf="saved(post)" (click)="unsave(post)"><ion-icon name="bookmark"></ion-icon></ion-button>
+    </ion-buttons>
+
+    <ion-card-content>
+      <p>{{post.likes?.length}} Likes</p>
+      <p *ngIf="ifCaption(post)"><b>{{post.username}}</b>‏‏‎ ‎{{post.caption}}</p>
+      
+      <ion-label class="color" *ngIf="commentSize(post)" (click)="comment(post)"> View all {{post.comments?.length}} comments...</ion-label>
+      <ion-list lines="none" *ngFor="let item of post.comments.slice(0,1)">
+        <p><b>‏‏‎{{item.username}}</b>‏‏‎ ‎{{item.comment}} </p>
+      </ion-list>
+    </ion-card-content>
+    <ion-label>‏‏‎ ‎{{post.posted | date: 'MM/dd/yyyy'}}</ion-label>
+  </ion-card>
+</ion-content>

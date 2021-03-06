@@ -1,0 +1,108 @@
+<ion-content>
+  <ion-item lines=full>
+  <ion-row class="ion-padding">
+    <!-- Avatar -->
+    <ion-col>
+      <img [src]="currUser.image" class="avatar"/>
+    </ion-col>
+    <!-- Information about user -->
+    <ion-col class="ion-text-center">
+      <h6>{{currUser.posts}}</h6>
+      <p><strong>Posts</strong></p>
+    </ion-col>
+    <ion-col (click)="goToFollowers()" class="ion-text-center">
+      <h6>{{currUser.followers}}</h6>
+      <p><strong>Followers</strong></p>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <h6>{{currUser.following}}</h6>
+      <p><strong>Following</strong></p>
+    </ion-col>
+
+    <ion-col>
+      <ion-button size="default" expand="block" class="edit-button" (click)="goToEdit()">Edit your profile</ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-item>
+  <!-- Profile info -->
+  <div class="ion-padding">
+    <p><b>{{currUser.fullname}}</b></p>
+    <p>{{currUser.status}}</p>
+  </div>
+
+  <!-- Segments -->
+  <div>
+    <ion-segment [(ngModel)]="profile_segment">
+      <ion-segment-button value="grid">
+        <ion-icon name="apps"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        <ion-icon name="browsers-sharp"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="saved">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="profile_segment">
+    <ion-list *ngSwitchCase="'grid'">
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let i of userPosts">
+            <img [src]="i.image">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'list'">
+      <ion-card *ngFor="let post of userPosts">
+        <ion-card-header>
+            <ion-item lines="none">
+              <ion-avatar>
+                <img [src]="post.userimg">
+              </ion-avatar>
+            <h6 style="font-weight: bold">‏‏‎ ‎‏‏‎ ‎{{post.username}}</h6>
+            </ion-item>
+        </ion-card-header>
+    
+        <img [src]="post.image">
+    
+        <ion-buttons>
+          <ion-button *ngIf="!liked(post)" (click)="like(post)">
+            <ion-icon name="heart-outline"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="liked(post)" (click)="unlike(post)">
+            <ion-icon class="border" name="heart" color="danger"></ion-icon>
+          </ion-button>
+          <ion-button (click)="comment(post)">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    
+        <ion-card-content>
+          <p>{{post.likes?.length}} Likes</p>
+          <p *ngIf="ifCaption(post)"><b>{{post.username}}</b>‏‏‎ ‎{{post.caption}}</p>
+          <ion-label class="color" *ngIf="commentSize(post)" (click)="comment(post)"> View all {{post.comments?.length}} comments...</ion-label>
+          <ion-list lines="none" *ngFor="let item of post.comments.slice(0,1)">
+            <p><b>‏‏‎{{item.username}}</b>‏‏‎ ‎{{item.comment}} </p>
+          </ion-list>
+        </ion-card-content>
+        <ion-label>‏‏‎ ‎{{post.posted | date: 'MM/dd/yyyy'}}</ion-label>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'saved'">
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let i of saved">
+            <img [src]="i.image">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    
+  </div>
+
+</ion-content>

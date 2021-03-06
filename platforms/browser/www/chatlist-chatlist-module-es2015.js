@@ -1,0 +1,165 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["chatlist-chatlist-module"],{
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/chatlist/chatlist.page.html":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/chatlist/chatlist.page.html ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Chat</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"goToSelect()\"><ion-icon name=\"add-outline\"></ion-icon></ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar style=\"--background:#ffe3ca\" (ionInput)=\"filterList($event)\"></ion-searchbar>\n  <ion-list lines=\"full\">\n    <ion-item *ngFor=\"let chat of chats\" (click)=\"goToChat(chat)\">\n      <ion-label class=\"ion-text-wrap\">\n          <img [src]=\"img\"/>\n      </ion-label>\n      <ion-label>\n        {{chat.username}}\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ "./src/app/chatlist/chatlist-routing.module.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/chatlist/chatlist-routing.module.ts ***!
+  \*****************************************************/
+/*! exports provided: ChatlistPageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatlistPageRoutingModule", function() { return ChatlistPageRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _chatlist_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chatlist.page */ "./src/app/chatlist/chatlist.page.ts");
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _chatlist_page__WEBPACK_IMPORTED_MODULE_3__["ChatlistPage"]
+    }
+];
+let ChatlistPageRoutingModule = class ChatlistPageRoutingModule {
+};
+ChatlistPageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+    })
+], ChatlistPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/chatlist/chatlist.module.ts":
+/*!*********************************************!*\
+  !*** ./src/app/chatlist/chatlist.module.ts ***!
+  \*********************************************/
+/*! exports provided: ChatlistPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatlistPageModule", function() { return ChatlistPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _chatlist_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chatlist-routing.module */ "./src/app/chatlist/chatlist-routing.module.ts");
+/* harmony import */ var _chatlist_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./chatlist.page */ "./src/app/chatlist/chatlist.page.ts");
+
+
+
+
+
+
+
+let ChatlistPageModule = class ChatlistPageModule {
+};
+ChatlistPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+            _chatlist_routing_module__WEBPACK_IMPORTED_MODULE_5__["ChatlistPageRoutingModule"]
+        ],
+        declarations: [_chatlist_page__WEBPACK_IMPORTED_MODULE_6__["ChatlistPage"]]
+    })
+], ChatlistPageModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/chatlist/chatlist.page.scss":
+/*!*********************************************!*\
+  !*** ./src/app/chatlist/chatlist.page.scss ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("ion-content {\n  --ion-background-color: peachpuff;\n}\n\nion-header {\n  --ion-background-color: peachpuff;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3J1dHZpa3BhdGVsL2Nsb25lL3NyYy9hcHAvY2hhdGxpc3QvY2hhdGxpc3QucGFnZS5zY3NzIiwic3JjL2FwcC9jaGF0bGlzdC9jaGF0bGlzdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxpQ0FBQTtBQ0NKOztBRENBO0VBQ0ksaUNBQUE7QUNFSiIsImZpbGUiOiJzcmMvYXBwL2NoYXRsaXN0L2NoYXRsaXN0LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50IHtcbiAgICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiBwZWFjaHB1ZmY7XG59XG5pb24taGVhZGVyIHtcbiAgICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiBwZWFjaHB1ZmY7XG59IiwiaW9uLWNvbnRlbnQge1xuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiBwZWFjaHB1ZmY7XG59XG5cbmlvbi1oZWFkZXIge1xuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiBwZWFjaHB1ZmY7XG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/chatlist/chatlist.page.ts":
+/*!*******************************************!*\
+  !*** ./src/app/chatlist/chatlist.page.ts ***!
+  \*******************************************/
+/*! exports provided: ChatlistPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatlistPage", function() { return ChatlistPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+
+
+
+
+let ChatlistPage = class ChatlistPage {
+    constructor(router, userService) {
+        this.router = router;
+        this.userService = userService;
+        this.chats = [];
+        this.img = "/assets/message.png";
+        this.userService.getObservable().subscribe((data) => {
+            this.chats = [];
+            this.chats = this.userService.chats;
+        });
+        this.chats = [];
+        this.chats = this.userService.chats;
+    }
+    ngOnInit() {
+    }
+    goToChat(chat) {
+        this.router.navigate(["/chat", chat]);
+    }
+    goToSelect() {
+        this.router.navigate(["/select"]);
+    }
+};
+ChatlistPage.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] }
+];
+ChatlistPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-chatlist',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./chatlist.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/chatlist/chatlist.page.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./chatlist.page.scss */ "./src/app/chatlist/chatlist.page.scss")).default]
+    })
+], ChatlistPage);
+
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=chatlist-chatlist-module-es2015.js.map

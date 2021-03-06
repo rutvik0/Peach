@@ -1,0 +1,39 @@
+  ion-textarea{
+    margin-left: 10px;
+    border-radius: 10px !important;
+    background:  #ffe3ca;
+  }
+
+
+  ion-footer {
+    padding-bottom: 9px;
+    padding-left: 2px;
+  }
+
+  ion-avatar {
+    width:100% !important;
+    height : 100% !important;
+    max-width: 40px !important;  //any size
+    max-height: 40px !important; //any size
+  }
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  ion-content {
+    --ion-background-color: peachpuff;
+  }
+
+  ion-header {
+    --ion-background-color: peachpuff;
+  }
+
+  .footer {
+    background-color: peachpuff;
+    background: peachpuff;
+  }
+  
